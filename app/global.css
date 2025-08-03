@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+input::placeholder {
+  color: #9ca3af; /* Tailwind gray-400 */
+}
