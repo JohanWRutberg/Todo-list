@@ -7,14 +7,14 @@ import { Trash2, Plus } from "lucide-react";               // Ikoner från Lucid
 // Själva TodoList-komponenten
 export default function TodoList() {
   
-  const [todos, setTodos] = useState([]);                  // todos = array med alla todo-objekt
-  const [input, setInput] = useState("");                  // input = texten i inmatningsfältet
+  const [todos, setTodos] = useState([]);                             // todos = array med alla todo-objekt
+  const [input, setInput] = useState("");                             // input = texten i inmatningsfältet
 
   // Funktion som lägger till en todo i listan
   const addTodo = () => {
-    if (input.trim() === "") return;                       // Tom sträng? Avbryt.
-    setTodos([...todos, { id: Date.now(), text: input }]); // Lägg till ny todo med unik id
-    setInput("");                                          // Töm inputfältet
+    if (input.trim() === "") return;                                  // Tom sträng? Avbryt.
+    setTodos([...todos, { id: Date.now(), text: input }]);            // Lägg till ny todo med unik id
+    setInput("");                                                     // Töm inputfältet
   };
 
     // Funktion för att ta bort en todo baserat på id
@@ -31,10 +31,10 @@ export default function TodoList() {
           type="text"
           className="flex-grow p-4 border-2 border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white text-lg"
           placeholder="Vad behöver du göra?"
-          value={input}                                            // Kopplar inputvärdet till state
-          onChange={(e) => setInput(e.target.value)}               // Uppdaterar state vid inmatning
-          onKeyDown={(e) => e.key === 'Enter' && addTodo()}        // Lägg till todo när Enter trycks
-          autoFocus                                                // Gör att inputfältet får fokus direkt när sidan laddas
+          value={input}                                               // Kopplar inputvärdet till state
+          onChange={(e) => setInput(e.target.value)}                  // Uppdaterar state vid inmatning
+          onKeyDown={(e) => e.key === 'Enter' && addTodo()}           // Lägg till todo när Enter trycks
+          autoFocus                                                   // Gör att inputfältet får fokus direkt när sidan laddas
         />
         <button
           onClick={addTodo}
@@ -50,10 +50,10 @@ export default function TodoList() {
           {todos.map((todo) => (
             <motion.li
               key={todo.id}
-              initial={{ opacity: 0, y: -10 }}                     // Startposition (syns inte)
-              animate={{ opacity: 1, y: 0 }}                       // Animera in till normal position
-              exit={{ opacity: 0, x: 30 }}                         // Animera ut vid borttagning
-              layout                                               // Ger smidig layout-animation vid omordning
+              initial={{ opacity: 0, y: -10 }}                        // Startposition (syns inte)
+              animate={{ opacity: 1, y: 0 }}                          // Animera in till normal position
+              exit={{ opacity: 0, x: 30 }}                            // Animera ut vid borttagning
+              layout                                                  // Ger smidig layout-animation vid omordning
               className="bg-indigo-50 p-4 rounded-xl flex justify-between items-center shadow border border-indigo-100 hover:bg-indigo-100 transition"
             >
               <span className="text-gray-800 text-base font-medium">{todo.text}</span>
