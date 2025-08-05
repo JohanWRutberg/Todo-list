@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";   // Framer Motion används för att animera element som läggs till eller tas bort
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";   // Animering av element som läggs till eller tas bort
 import { Trash2, Plus } from "lucide-react";               // Ikoner från Lucide: en papperskorg och ett plustecken
 
 // Själva TodoList-komponenten
@@ -9,6 +9,19 @@ export default function TodoList() {
   
   const [todos, setTodos] = useState([]);                             // todos = array med alla todo-objekt
   const [input, setInput] = useState("");                             // input = texten i inmatningsfältet
+
+  // 🔁 Ladda todos från localStorage när komponenten mountas
+  useEffect(() => {
+    const stored = localStorage.getItem("todos");
+    if (stored) {
+      setTodos(JSON.parse(stored)); // Konvertera från sträng till array
+    }
+  }, []);
+
+  // 💾 Spara todos till localStorage varje gång de ändras
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos)); // Gör om array till sträng
+  }, [todos]);
 
   // Funktion som lägger till en todo i listan
   const addTodo = () => {
