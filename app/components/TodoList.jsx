@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";   // Animering av element som läggs till eller tas bort
-import { Trash2, Plus } from "lucide-react";               // Ikoner från Lucide: en papperskorg och ett plustecken
+import { motion, AnimatePresence } from "framer-motion";              // Animering av det som läggs till eller tas bort
+import { Trash2, Plus } from "lucide-react";                          // Ikoner från Lucide: papperskorg och plustecken
 
 // Själva TodoList-komponenten
 export default function TodoList() {
@@ -10,17 +10,17 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);                             // todos = array med alla todo-objekt
   const [input, setInput] = useState("");                             // input = texten i inmatningsfältet
 
-  // 🔁 Ladda todos från localStorage när komponenten mountas
+  // Ladda todos från localStorage när komponenten mountas
   useEffect(() => {
     const stored = localStorage.getItem("todos");
     if (stored) {
-      setTodos(JSON.parse(stored)); // Konvertera från sträng till array
+      setTodos(JSON.parse(stored));                                   // Konvertera från sträng till array
     }
   }, []);
 
-  // 💾 Spara todos till localStorage varje gång de ändras
+  // Spara todos till localStorage varje gång de ändras
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos)); // Gör om array till sträng
+    localStorage.setItem("todos", JSON.stringify(todos));             // Gör om array till sträng
   }, [todos]);
 
   // Funktion som lägger till en todo i listan
@@ -53,7 +53,7 @@ export default function TodoList() {
           onClick={addTodo}
           className="bg-indigo-500 text-white rounded-xl p-4 hover:bg-indigo-600 transition-all shadow-md"
         >
-          <Plus size={20} /> {/* Ikon från Lucide */}
+          <Plus size={20} />                                          {/* Ikon från Lucide */}
         </button>
       </div>
 
@@ -74,7 +74,7 @@ export default function TodoList() {
                 onClick={() => removeTodo(todo.id)} // Kör borttagningsfunktion
                 className="text-red-500 hover:text-red-700 transition"
               >
-                <Trash2 size={18} />    {/* Papperskorgsikon från Lucide */}
+                <Trash2 size={18} />                                   {/* Papperskorgsikon från Lucide */}
               </button>
             </motion.li>
           ))}
